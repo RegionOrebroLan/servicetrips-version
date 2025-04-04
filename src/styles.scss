@@ -1,1 +1,261 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Angular material and theme
+//@use '@angular/material' as mat;
+//@include mat.core();
+//
+//$light-theme: mat.define-theme((color: (theme-type: light,
+//                primary: mat.$violet-palette,
+//            ),
+//        ));
+//
+//html {
+//    @include mat.all-component-themes($light-theme);
+//}
+//
+//Imports
+@import "bootstrap/dist/css/bootstrap.min.css";
+//@import "@fortawesome/fontawesome-free/css/all.min.css";
+//@import "ngx-toastr/toastr";
+//using default bootstrap and fontawesome makes it easier for 'non-angular'-web-developers to style,
+//instead of using e.g. angular-powered-bootstrap or angular-fontawesome,
+//which both use custom elements (and variables for those elements) instead of just css-classes
+
+//Meme
+
+//Global styles
+:root {
+    --rol-green: rgb(160, 197, 58);
+    --rol-green-light: rgb(200, 226, 127);
+    --rol-blue: rgb(0, 144, 212);
+    --rol-blue-light: rgb(0, 144, 212, 0.5);
+    //Tabeller och accordions
+    --mat-table-background-color: rgb(255, 255, 255);
+    --mat-expansion-container-background-color: rgb(255, 255, 255);
+    --mat-app-surface: rgb(255, 255, 255);
+    //textfält
+    --mdc-filled-text-field-container-color: rgb(243, 241, 241);
+    --mdc-filled-text-field-caret-color: rgb(0, 0, 0);
+    --mdc-filled-text-field-focus-active-indicator-color: var(--rol-blue);
+    --mdc-filled-text-field-focus-label-text-color: rgb(0, 0, 0);
+
+    --mdc-outlined-text-field-caret-color: rgb(0, 0, 0);
+    --mdc-outlined-text-field-focus-label-text-color: rgb(0, 0, 0);
+    --mdc-outlined-text-field-focus-outline-color: rgb(0, 0, 0);
+
+    //checkbox
+    --mdc-checkbox-selected-pressed-icon-color: var(--rol-blue);
+    --mdc-checkbox-unselected-pressed-state-layer-color: var(--rol-blue);
+    --mdc-checkbox-selected-focus-icon-color: var(--rol-blue);
+    --mdc-checkbox-selected-focus-state-layer-color: var(--rol-blue);
+    --mdc-checkbox-selected-hover-state-layer-color: var(--rol-blue);
+    --mdc-checkbox-selected-hover-icon-color: var(--rol-blue);
+    --mdc-checkbox-selected-icon-color: var(--rol-blue);
+    --mat-full-pseudo-checkbox-selected-icon-color: var(--rol-blue);
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--rol-blue);
+
+    //radio
+    --mdc-radio-selected-focus-icon-color: var(--rol-blue);
+    --mdc-radio-selected-hover-icon-color: var(--rol-blue);
+    --mdc-radio-selected-icon-color: var(--rol-blue);
+    --mdc-radio-selected-pressed-icon-color: var(--rol-blue);
+    --mat-radio-checked-ripple-color: var(--rol-blue);
+
+    //annat
+    --mdc-linear-progress-active-indicator-color: rgb(0, 0, 0);
+    --mat-form-field-focus-select-arrow-color: var(--rol-blue);
+    --mat-select-focused-arrow-color: var(--rol-blue);
+    --mat-option-selected-state-layer-color: #D0EAF7;
+    .mat-mdc-form-field-error-wrapper {
+        padding: 0;
+    }
+}
+//bootstrap
+.btn-primary {
+    --bs-btn-bg: var(--rol-blue);
+    --bs-btn-border-color: #fff;
+    --bs-btn-disabled-bg: var(--rol-blue);
+    --bs-btn-disabled-border-color: var(--rol-blue);
+    --bs-btn-hover-bg: var(--rol-blue);
+    --bs-btn-hover-border-color: var(--rol-blue);
+}
+.btn-outline-primary {
+    --bs-btn-color: var(--rol-blue);
+    --bs-btn-hover-bg: var(--rol-blue);
+    --bs-btn-hover-border-color: #fff;
+    --bs-btn-border-color: var(--rol-blue);
+    --bs-btn-disabled-bg: var(--rol-blue);
+    --bs-btn-disabled-border-color: var(--rol-blue);
+    --bs-btn-active-bg: var(--rol-blue);
+    --bs-btn-active-border-color: var(--rol-blue);
+    --bs-btn-disabled-color: var(--rol-blue);
+}
+.bgc-rgl {
+    background-color: white; /*var(--rol-green-light);*/
+}
+
+.bgc-rb {
+    background-color: var(--rol-blue);
+}
+
+.bgc-rg {
+    background-color: var(--rol-green);
+}
+
+.bgc-rbl {
+    background-color: var(--rol-blue-light);
+}
+
+.c-rbl {
+    color: var(--rol-blue-light);
+}
+
+.c-rb {
+    color: var(--rol-blue);
+}
+
+.rol-h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.rol-h2 {
+    @extend .rol-h1;
+    font-size: 16px;
+}
+
+.rol-h3 {
+    @extend .rol-h1;
+    font-size: 14px;
+}
+
+.rol-text {
+    font-family: 'Times New Roman', Times, sans-serif;
+    font-style: normal;
+    font-size: 12px;
+}
+
+.rol-text-bold {
+    @extend .rol-text;
+    font-weight: bold;
+}
+
+.rol-text-italic {
+    @extend .rol-text;
+    font-style: italic;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.w-fit-content {
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+/* Header */
+
+
+
+.header {
+   // background: url("assets/rol-images/vågen-hdpi.png") no-repeat scroll center top / 1600px 300px,
+   //     url("assets/rol-images/header-radient-hdpi.png") repeat-x scroll center top / 1600px 300px #9fc53a;
+    content: "";
+    height: 90px;
+    position: relative;
+    width: 100%;
+    /*min-width: 750px;*/
+}
+
+header .logo {
+    margin-top: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #000000;
+}
+
+header .logo img {
+    margin-top: 10px;
+    height: 60px;
+    width: auto;
+}
+
+header .app-name {
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 24px;
+}
+
+//flex container styling
+
+
+.flex-container {
+    /* We first create a flex layout context */
+    display: flex;
+
+    /* Then we define the flow direction 
+       and if we allow the items to wrap 
+     * Remember this is the same as:
+     * flex-direction: row;
+     * flex-wrap: wrap;
+     */
+    flex-flow: row wrap;
+
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-around;
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: white;/*var(--rol-blue-light);*/
+}
+
+.flex-parent {
+    display: flex;
+    height: auto;
+    padding: 10px;
+    background-color: var(--rol-blue-light);
+}
+
+.flex-item {
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+    line-height: 150px;
+    text-align: center;
+}
+.container {
+    margin-left: 1em;
+}
+thead{
+    background-color: var(--mdc-filled-text-field-container-color, var(--mat-app-surface-variant));
+}
+.hide-in-mobile {
+    display: flex;
+}
+.show-in-mobile {
+    display: none;
+}
+@media only screen and (max-width: 991px) {
+    .hide-in-mobile {
+        display: none;
+    }
+    .show-in-mobile {
+        display: flex;
+    }
+}
+@media only screen and (max-width: 750px) {
+    header .logo {
+        border: none;
+    }
+    header .app-name {
+        display: none;
+    }
+
+    header {
+        height: 180px;
+    }
+
+}
+//

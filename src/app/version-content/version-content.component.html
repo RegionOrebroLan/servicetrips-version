@@ -1,0 +1,25 @@
+<section class="container">
+    <div class="row ms-3">
+        <div class="col-md-11 offset-md-1 col-xs-12">
+
+
+            <div class="row">
+                <h2>Version av appen i olika miljöer</h2>
+            </div>
+            <div class="row ms-1">
+                <table>
+                    <th>Tjänst</th>
+                    <th>Test</th>
+                    <th>Prod</th>
+                    @for(svc of svcs; track svc.name) {
+                        <tr>
+                            <td>{{svc.name}}</td>
+                            <td>{{svc.test}}</td>
+                            <td>{{svc.prod}}</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
