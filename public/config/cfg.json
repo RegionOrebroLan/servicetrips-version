@@ -5,7 +5,7 @@
         "env": "Prod"
     },
     {
-        "adminUrl": "https://ratten-admin-test.cloud-dev.orebroll.se/admin/v2/version",
+        "adminUrl": "/verre",
         "exposedUrl": "https://ratten-api-test.regionorebrolan.se/v2/version",
         "env": "Test"
     }

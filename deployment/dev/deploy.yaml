@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicetrips-version
+spec:
+  template:
+    metadata:
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: '*'
+    spec:
+      containers:
+        - name: servicetrips-version
+          image: docker.io/regionorebrolan/servicetrips-version:dev
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: dockerhub-pull-secret

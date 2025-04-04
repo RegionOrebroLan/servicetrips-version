@@ -1,12 +1,13 @@
 export interface VersionWrapper {
-    data: Data
-    success: boolean
-    message: string
-    token: any
+    data: Data;
+    success: boolean;
+    message: string;
+    token: any;
 }
 
 export interface Data {
-    versions?: Version
+    items?: Map<string, string>;
+
     version?: Map<string, string>;
 }
 

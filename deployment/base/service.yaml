@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: servicetrips-version
+  name: servicetrips-version
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: servicetrips-version
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

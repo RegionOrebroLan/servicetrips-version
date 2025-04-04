@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Config } from './config';
 
 @Injectable({
@@ -7,9 +7,7 @@ import { Config } from './config';
 })
 export class ConfigService {
   private static _config: Config[];
-  private http: HttpClient;
-  constructor() {
-    this.http = inject(HttpClient)
+  constructor(private http: HttpClient) {
   }
 
   public static get Config(): Config[] {
@@ -17,17 +15,17 @@ export class ConfigService {
   }
 
   loadConfig(): Promise<Config[]> {
-    console.log("Loading config");
-    return new Promise<Config[]>((resolve) => {
+    return new Promise<Config[]>((resolve, reject) => {
       const sub = this.http.get<Config[]>("/config/cfg.json").subscribe({
         next: (config: Config[]) => {
 
           ConfigService._config = config
-          resolve(config);
           console.log(`Config:\n${JSON.stringify(ConfigService._config)}`);
+          resolve(config);
         },
         error: (err: HttpErrorResponse) => {
           console.error(err.message);
+          reject();
           sub.unsubscribe();
         },
         complete: () => {

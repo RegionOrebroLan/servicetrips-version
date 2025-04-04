@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: servicetrips-version
+  name: servicetrips-version
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: servicetrips-version
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: servicetrips-version
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - servicetrips-version
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: docker.io/regionorebrolan/servicetrips-version:dev
+        name: servicetrips-version
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /usr/share/nginx/html/config/cfg.json
+          subPath: cfg.json
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 2
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 50m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 200Mi
+      volumes:
+        - name: config
+          configMap:
+            name: versions-config
+            items:
+            - key: cfg.json
+              path: cfg.json
+status: {}
+

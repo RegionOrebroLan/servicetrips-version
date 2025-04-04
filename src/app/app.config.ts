@@ -9,11 +9,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
-    
+    provideHttpClient(),
     provideAppInitializer(() => {
-      inject(ConfigService).loadConfig();
+      const confSvc = inject(ConfigService)
+      return confSvc.loadConfig();
     }
     ),
-    provideHttpClient(),
   ]
 };

@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  cfg.json: |
+    [
+      {
+          "adminUrl": "https://ratten-adminapi.regionorebrolan.se/admin/v2/version",
+          "exposedUrl": "https://ratten-api.regionorebrolan.se/v2/version",
+          "env": "Prod"
+      },
+      {
+          "adminUrl": "https://ratten-admin-test.cloud-dev.orebroll.se/admin/v2/version",
+          "exposedUrl": "https://ratten-api-test.regionorebrolan.se/v2/version",
+          "env": "Test"
+      }
+    ]
+        
+    
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: versions-config
