@@ -1,6 +1,7 @@
 
 export interface Config {
-    adminUrl: string;
-    exposedUrl: string;
+    urls: string[];
+    //adminUrl: string;
+    //exposedUrl: string;
     env: string;
 }

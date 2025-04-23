@@ -22,38 +22,30 @@ export class VersionContentComponent implements OnInit {
   destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
+
     ConfigService.Config?.map((cfg) => {
-      new Promise<any>((resolve, reject) => {
-        this.versionSvc.getVersion(cfg.adminUrl).subscribe({
-          next: (data: VersionWrapper) => {
-            if (data?.data) {
-              resolve(data.data);
+      cfg.urls.map((url) => {
+
+        new Promise<any>((resolve, reject) => {
+          this.versionSvc.getVersion(url).subscribe({
+            next: (data: VersionWrapper) => {
+              if (data?.data?.version) {
+                resolve(data.data.version);
+              } else if (data?.data) {
+                resolve(data.data);
+              }
+            },
+            error: (err: HttpErrorResponse) => {
+              console.error(err.message);
+              reject();
             }
-          },
-          error: (err: HttpErrorResponse) => {
-            console.log(err.message);
-            reject();
-          }
+          });
+        }).then((items) => {
+          this.populateSvcItem(items, cfg);
         });
-      }).then((items) => {
-        this.populateSvcItem(items, cfg);
-      });
-      new Promise<any>((resolve, reject) => {
-        this.versionSvc.getVersion(cfg.exposedUrl).subscribe({
-          next: (data: VersionWrapper) => {
-            if (data?.data?.version) {
-              resolve(data.data.version);
-            } 
-          },
-          error: (err: HttpErrorResponse) => {
-            console.log(err.message);
-            reject();
-          }
-        });
-      }).then((items) => {
-        this.populateSvcItem(items, cfg);
       });
     });
+
   }
   populateSvcItem(obj: any, cfg: Config) {
     const items = new Map<string, string>();
