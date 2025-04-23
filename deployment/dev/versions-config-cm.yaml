@@ -17,8 +17,6 @@ data:
           "env": "Test"
       }
     ]
-        
-    
 kind: ConfigMap
 metadata:
   creationTimestamp: null
