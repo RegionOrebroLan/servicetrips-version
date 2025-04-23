@@ -1,12 +1,16 @@
 [
     {
-        "adminUrl": "https://ratten-adminapi.regionorebrolan.se/admin/v2/version",
-        "exposedUrl": "https://ratten-api.regionorebrolan.se/v2/version",
+        "urls":[
+            "https://ratten-adminapi.regionorebrolan.se/admin/v2/version",
+            "https://ratten-api.regionorebrolan.se/v2/version" 
+        ],
         "env": "Prod"
     },
     {
-        "adminUrl": "/verre",
-        "exposedUrl": "https://ratten-api-test.regionorebrolan.se/v2/version",
+        "urls": [ 
+            "/verre",
+            "https://ratten-api-test.regionorebrolan.se/v2/version"
+        ],
         "env": "Test"
     }
 ]
