@@ -20,9 +20,10 @@ export class VersionContentComponent implements OnInit {
   svcs: Svc[] = [];
   constructor(private versionSvc: VersionService) { }
   destroyRef = inject(DestroyRef);
+  title: string | undefined;
 
   ngOnInit(): void {
-
+    this.title = ConfigService.Title.title;
     ConfigService.Config?.map((cfg) => {
       cfg.urls.map((url) => {
 
