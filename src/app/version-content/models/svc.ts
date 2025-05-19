@@ -1,5 +1,8 @@
 export interface Svc {
     name: string;
-    test: string;
-    prod: string;
+    env: svcEnvVersion;
+}
+export interface svcEnvVersion {
+    env: string;
+    version: string
 }

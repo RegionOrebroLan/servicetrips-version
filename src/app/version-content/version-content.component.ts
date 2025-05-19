@@ -18,12 +18,15 @@ export class VersionContentComponent implements OnInit {
 
   versions: VersionWrapper | undefined;
   svcs: Svc[] = [];
+  envs: string[] = [];
+  public cfgs: Config[] | undefined;
   constructor(private versionSvc: VersionService) { }
   destroyRef = inject(DestroyRef);
   title: string | undefined;
 
   ngOnInit(): void {
     this.title = ConfigService.Title.title;
+    this.cfgs = ConfigService.Config;
     ConfigService.Config?.map((cfg) => {
       cfg.urls.map((url) => {
 
@@ -61,18 +64,16 @@ export class VersionContentComponent implements OnInit {
       if (!v) {
         v = {
           name: key,
-          test: "",
-          prod: "",
+          env: {
+            env: cfg.env,
+            version: "",
+          }
         }
         this.svcs.push(v)
       }
       this.svcs?.map((v) => {
         if (v.name == key) {
-          if (cfg.env == "Prod") {
-            v.prod = value;
-          } else {
-            v.test = value;
-          }
+            v.env.version = value;
         }
       })
     })

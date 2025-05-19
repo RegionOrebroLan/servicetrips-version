@@ -7,13 +7,15 @@
             <div class="row ms-1">
                 <table>
                     <th>Tjänst</th>
-                    <th>Test</th>
-                    <th>Prod</th>
+                    @for(cfg of cfgs; track cfg.env) {
+                        <th>{{cfg.env}}</th>
+                    }
                     @for(svc of svcs; track svc.name) {
                         <tr class="border-bottom">
                             <td>{{svc.name}}</td>
-                            <td>{{svc.test}}</td>
-                            <td>{{svc.prod}}</td>
+                            @for(cfg of cfgs; track cfg.env) {
+                                <td>{{svc.env.version}}</td>
+                            }
                         </tr>
                     }
                 </table>
