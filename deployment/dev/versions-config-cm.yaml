@@ -4,19 +4,13 @@ data:
     [
       {
           "urls": [
-            "https://ratten-adminapi.regionorebrolan.se/admin/v2/version",
-            "https://ratten-api.regionorebrolan.se/v2/version",
-            "https://ratten-admin-serviceresan.lanstrafiken.se/versionz",
-            "https://serviceresan.lanstrafiken.se/versionz"
+            "https://your.domain.com/v2/version",
           ],
           "env": "Prod"
       },
       {
           "urls": [
-            "https://ratten-admin-test.cloud-dev.orebroll.se/admin/v2/version",
-            "https://ratten-api-test.regionorebrolan.se/v2/version",
-            "https://ratten-admin-test.cloud-dev.orebroll.se/versionz",
-            "https://ratten-webclient-test.regionorebrolan.se/versionz"
+            "https://test.your.domain.com/v2/version",
           ],
           "env": "Test"
       }
