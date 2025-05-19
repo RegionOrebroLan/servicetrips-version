@@ -5,6 +5,7 @@ metadata:
 resources:
   - ../base
   - versions-config-cm.yaml
+  - versions-title-cm.yaml
   - versions-route.yaml
 patches:
   - path: deploy.yaml

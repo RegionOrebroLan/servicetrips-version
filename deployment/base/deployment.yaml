@@ -41,6 +41,9 @@ spec:
         - name: config
           mountPath: /usr/share/nginx/html/config/cfg.json
           subPath: cfg.json
+        - name: title
+          mountPath: /usr/share/nginx/html/config/title.json
+          subPath: title.json
         livenessProbe:
           httpGet:
             path: /
@@ -63,6 +66,12 @@ spec:
             cpu: 100m
             memory: 200Mi
       volumes:
+        - name: title
+          configMap:
+            name: versions-title
+            items:
+            - key: title.json
+              path: title.json
         - name: config
           configMap:
             name: versions-config

@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  title.json: |
+    {
+      "title": "Serviceresan"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: versions-title
