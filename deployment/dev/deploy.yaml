@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: servicetrips-version
-          image: docker.io/regionorebrolan/servicetrips-version:v1.0.1
+          image: docker.io/regionorebrolan/servicetrips-version:v1.0.2
           imagePullPolicy: Always
       imagePullSecrets:
         - name: dockerhub-pull-secret
