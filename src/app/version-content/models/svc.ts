@@ -1,6 +1,6 @@
 export interface Svc {
     name: string;
-    env: svcEnvVersion;
+    envs: svcEnvVersion[];
 }
 export interface svcEnvVersion {
     env: string;

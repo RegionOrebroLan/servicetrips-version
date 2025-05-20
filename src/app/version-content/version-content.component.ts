@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { Config } from '../config/config';
 import { ConfigService } from '../config/config.service';
-import { Svc } from './models/svc';
+import { Svc, svcEnvVersion } from './models/svc';
 import { VersionWrapper } from './models/version';
 import { VersionService } from './services/version.service';
 
@@ -60,23 +60,26 @@ export class VersionContentComponent implements OnInit {
     }
 
     items.forEach((value: string, key: string) => {
+      let svcEnvs: svcEnvVersion[] = [];
+      const svcEnv: svcEnvVersion = {
+        env: cfg.env,
+        version: value,
+      }
+      svcEnvs.push(svcEnv);
+
       let v = this.svcs.find(n => n.name === key)
       if (!v) {
         v = {
           name: key,
-          env: {
-            env: cfg.env,
-            version: "",
-          }
+          envs: svcEnvs,
         }
         this.svcs.push(v)
-      }
-      this.svcs?.map((v) => {
-        if (v.name == key) {
-            v.env.version = value;
-        }
-      })
-    })
+      } else {
+        svcEnvs = this.svcs.find(v => v.name === key)!.envs;
+        svcEnvs.push(svcEnv)
+        this.svcs.find(v => v.name === key)!.envs = svcEnvs;
+      }      
+    });
   }
 
 }

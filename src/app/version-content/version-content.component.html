@@ -8,15 +8,16 @@
                 <table>
                     <th>Tjänst</th>
                     @for(cfg of cfgs; track cfg.env) {
-                        <th>{{cfg.env}}</th>
+                    <th>{{cfg.env}}</th>
                     }
                     @for(svc of svcs; track svc.name) {
-                        <tr class="border-bottom">
-                            <td>{{svc.name}}</td>
-                            @for(cfg of cfgs; track cfg.env) {
-                                <td>{{svc.env.version}}</td>
-                            }
-                        </tr>
+                    <tr class="border-bottom col">
+                        <td>{{svc.name}}</td>
+                        @for(svcVer of svc.envs; track svcVer.env) {
+                        <td>{{svcVer.version}}</td>
+                        }
+
+                    </tr>
                     }
                 </table>
             </div>

@@ -1,9 +1,17 @@
 {
+    "/verre-prod": {
+      "target": "http://localhost:9000",
+      "secure": false,
+      "pathRewrite": {
+        "^/verre-prod$": "/version/prod"
+      }
+    },
     "/verre": {
       "target": "http://localhost:9000",
       "secure": false,
       "pathRewrite": {
-        "^/verre": "/version"
+        "^/verre$": "/version"
       }
     }
+    
   }
