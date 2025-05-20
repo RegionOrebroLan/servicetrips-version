@@ -2,7 +2,8 @@
     {
         "urls":[
             "https://ratten-adminapi.regionorebrolan.se/admin/v2/version",
-            "https://ratten-api.regionorebrolan.se/v2/version" 
+            "https://ratten-api.regionorebrolan.se/v2/version",
+            "/verre-prod"
         ],
         "env": "Prod"
     },
