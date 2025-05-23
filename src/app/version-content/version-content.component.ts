@@ -46,6 +46,7 @@ export class VersionContentComponent implements OnInit {
           });
         }).then((items) => {
           this.populateSvcItem(items, cfg);
+          this.sortSvcs(this.svcs);
         });
       });
     });
@@ -79,6 +80,19 @@ export class VersionContentComponent implements OnInit {
         svcEnvs.push(svcEnv)
         this.svcs.find(v => v.name === key)!.envs = svcEnvs;
       }      
+    });
+  }
+  sortSvcs(svcs: Svc[]) {
+    this.svcs.map((svc) => {
+      svc.envs.sort((a, b) => {
+        if (svc.envs.indexOf(a) > (this.cfgs?.findIndex(c => c?.env === a.env) ?? 0)) {
+          return -1
+        } else if (svc.envs.indexOf(a) < (this.cfgs?.findIndex(c => c?.env === a.env) ?? 0)) {
+          return 1
+        } else {
+          return 0
+        }
+      })
     });
   }
 
