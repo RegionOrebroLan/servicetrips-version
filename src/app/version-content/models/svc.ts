@@ -4,5 +4,5 @@ export interface Svc {
 }
 export interface svcEnvVersion {
     env: string;
-    version: string
+    version?: string;
 }

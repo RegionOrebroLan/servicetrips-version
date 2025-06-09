@@ -62,39 +62,54 @@ export class VersionContentComponent implements OnInit {
 
     items.forEach((value: string, key: string) => {
       let svcEnvs: svcEnvVersion[] = [];
+      //Skapa en serviceEnvironment med den här iterationens miljö och version.
       const svcEnv: svcEnvVersion = {
         env: cfg.env,
         version: value,
       }
       svcEnvs.push(svcEnv);
-
       let v = this.svcs.find(n => n.name === key)
+      //Om det inte redan finns en service i listan så skapar vi en och lägger till den här miljöns serviceEnvironment 
+      //samt tomma envs för de andra miljöerna.
       if (!v) {
+
+
+        this.cfgs?.map((conf) => {
+          if (conf.env !== cfg.env) {
+            const svcEnvEmpty: svcEnvVersion = {
+              env: conf.env,
+              version: ""
+            }
+            svcEnvs.push(svcEnvEmpty)
+          }
+        });
+
         v = {
           name: key,
           envs: svcEnvs,
         }
-        this.svcs.push(v)
+        this.svcs.push(v);
       } else {
-        svcEnvs = this.svcs.find(v => v.name === key)!.envs;
-        svcEnvs.push(svcEnv)
-        this.svcs.find(v => v.name === key)!.envs = svcEnvs;
-      }      
+        //Byt ut det existerande tomma serviceEnvironment entryt i listan mot den aktuella iterationens miljö och version.
+        v.envs.splice(v.envs.findIndex((e) => e.env === cfg.env), 1, svcEnv);
+      }
+
     });
   }
   sortSvcs(svcs: Svc[]) {
-    this.svcs.map((svc) => {
+    svcs.map((svc) => {
       svc.envs.sort((a, b) => {
-        if (svc.envs.indexOf(a) > (this.cfgs?.findIndex(c => c?.env === a.env) ?? 0)) {
-          return -1
-        } else if (svc.envs.indexOf(a) < (this.cfgs?.findIndex(c => c?.env === a.env) ?? 0)) {
+        let aPos = this.cfgs?.findIndex(c => c?.env === a.env) ?? 0;
+        let bPos = this.cfgs?.findIndex(c => c?.env === b.env) ?? 0;
+        if (aPos > bPos) {
           return 1
+        } else if (aPos < bPos) {
+          return -1
         } else {
           return 0
         }
       })
     });
   }
-
 }
 
